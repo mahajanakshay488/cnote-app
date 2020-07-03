@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Notes</title>
+  <link rel="shortcut icon" href="../images/fevicon.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+</head>
+<body>
+  <div id="overlay"></div>
+  <div id="modal">
+    <button id="closeform"><i class="fas fa-times"></i></button>
+    <h3>File Name</h3>
+    <form id="form" action="/fileCreation" method="POST">
+      <input type="text" name="fileName" placeholder="file name">
+      <input type="submit" value="Create File">
+    </form>
+  </div>
+  <div id="back">
+    <button id="openleft"><i class="fas fa-angle-right"></i></button>
+    <div id="left">
+     <button id="closeleft"><i class="fas fa-angle-left"></i></button>
+      <h4>
+        <span>Folder</span>
+        <div id="icons">
+          <button id="openform"><i class="fas fa-plus"></i></button>
+          <a href="/"><i class="fas fa-redo-alt"></i></a> 
+      </div>
+      </h4>
+      <h5><i class="far fa-folder"></i>Folder Name</h5>
+      <ul>
+        <% file.forEach(function(file){ %>
+          <a href= <%= "/openfile/" +file %>><li><%= file%></li></a>
+        <%})%>
+      </ul>
+    </div>
+    <div id="right">
+      <div id="sendPost">
+        <h3 id="instr">To perform any operation click the button " > " present in top-left corner.</h3>
+      </div>
+      <div id="terminal">
+        <h4>Costom terminal developed by Mr. @_k_s_h_a_y_. proud Sheryian.</h4>
+        <h5><span>></span> <%= action%></h5>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/script.js"></script>
+  
+  <script>
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('../sw.js')
+    .then(res=>{
+      console.info('SW is registered.');
+    })
+    .catch(err=>{
+      console.error('Error with registering SW file !');
+    })
+  }
+  else
+  console.log('SW is not supported !');
+  </script>
+</body>
+</html>
